@@ -2,9 +2,8 @@ from Button import Button
 from Status import Status
 import time
 
-
-def get_the_location():
-    buttons = ['find_match', 'accept', 'exit', 'play_again']
+# def get_the_location():
+#     buttons = ['find_match', 'accept', 'exit', 'play_again']
 
 
 button_find_match = Button('find_match')
@@ -18,7 +17,6 @@ status = Status()
 
 
 def find_match():
-
     # step1. find match
     if button_find_match.location is None:
         button_find_match.find_location()
@@ -50,7 +48,6 @@ def play_again():
 
 
 def play_game():
-
     status.check()
     while status.status is None:
         status.check()
@@ -80,14 +77,26 @@ def exit_game():
         elif status.status == "play_again":
             play_again()
             break
-        elif status.status is None:
+        elif status.status is None or status.status == "in_game":
             print("game does not end yet")
             time.sleep(30)
+
         else:
             raise RuntimeError('something was wrong in the progress')
 
 
+ss = r'''
+    _       _      _____ ___ _____ _ 
+   /_\ _  _| |_ __|_   _| __|_   _| |
+  / _ \ || |  _/ _ \| | | _|  | | |_|
+ /_/ \_\_,_|\__\___/|_| |_|   |_| (_)
+                                     
+'''
+
+i = 1
+print(ss)
 while True:
+    print(f"----------------------{i}st--game---------")
     time.sleep(2)
 
     find_match()
