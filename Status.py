@@ -26,12 +26,16 @@ class Status:
         flag = None
         while not flag:
             for item in ["find_match", "in_queue", "accept", "in_game", "exit", "play_again"]:
-                flag = pag.locateOnScreen(item+".png")
+                flag = pag.locateOnScreen(f"img/{item}.png")
                 if flag:
                     self.status = item  # find corresponding counter of the found button
                     print(f"Status checked! ----{item}----")
                     break
+            print("No status checked. Continuing...")
 
 
 if __name__ == "__main__":
-    pag.locateOnScreen('test.png')
+    time.sleep(2)
+    s = Status()
+    s.check()
+    print(s.status)
