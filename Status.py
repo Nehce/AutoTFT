@@ -5,9 +5,10 @@ import pyautogui as pag
 
 class Status:
     def __init__(self):
-        self.list = ["to_play", "in_queue", "to_accept", "loading", "in_game", "to_exit"]
+        self.list = ["find_match", "in_queue", "accept", "loading", "in_game", "exit"]
         self.link = {}  # link between button names and status list
         self.counter = 0
+        self.status = "find_match"
 
     def forward(self):
         if self.list[self.counter] == "to_exit":
@@ -24,12 +25,12 @@ class Status:
     def check(self):
         flag = None
         while not flag:
-            for item in ["a", "b", "c"]:
+            for item in ["find_match", "in_queue", "accept", "in_game", "exit", "play_again"]:
                 flag = pag.locateOnScreen(item+".png")
                 if flag:
-                    self.counter = self.list.index(self.link[item])  # find corresponding counter of the found button
+                    self.status = item  # find corresponding counter of the found button
+                    print(f"Status checked! ----{item}----")
                     break
-            time.sleep(5)
 
 
 if __name__ == "__main__":
