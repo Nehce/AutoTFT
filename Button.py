@@ -19,7 +19,7 @@ class Button:
     def convert_location(self):
         self.location = self.location/2
 
-    def click(self):
+    def click(self):  # strategy to avoid robot-detection should be added here
         if self.location:
             pag.mouseDown(*self.location, duration=0.2)
             pag.mouseUp(*self.location, duration=0.2)
