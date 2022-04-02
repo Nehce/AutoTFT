@@ -25,6 +25,7 @@ class Status:
     def check(self):
         #  please pay attention to the order of the following list, it matters!!
         #  the first one checked will break the for loop, so items in the front of the list has higher priority.
+
         for item in ["find_match", "accept", "in_queue", "exit", "play_again", "in_game"]:
             flag = pag.locateOnScreen(f"img/{item}.png", confidence=0.9)
             if flag:

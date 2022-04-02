@@ -23,6 +23,7 @@ class Button:
         if self.location:
             pag.mouseDown(*self.location, duration=0.2)
             pag.mouseUp(*self.location, duration=0.2)
+            pag.moveTo(500, 1, duration=0.2)
 
 
 if __name__ == "__main__":

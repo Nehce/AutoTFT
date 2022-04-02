@@ -23,6 +23,7 @@ def find_match():
     if button_find_match.location is None:
         button_find_match.find_location()
     button_find_match.click()
+    print("finding match!")
 
 
 def accept():
@@ -31,6 +32,7 @@ def accept():
         button_accept.find_location()
     if button_accept.location:
         button_accept.click()
+    print("accepted!")
 
 
 def quit_match():
@@ -49,21 +51,22 @@ def play_again():
 
 def play_game():
 
-    find_match()
-
     status.check()
-    while status.status == "in_queue":
+    while status.status is None:
         status.check()
+
+    if status.status == "in_queue":
         time.sleep(1)
+        print("in queue... waiting to accept...")
 
     if status.status == "accept":
         accept()
+        time.sleep(20)
 
-    time.sleep(20)
-    status.check()
     if status.status == "find_match":
         play_game()
-    elif status.status == "in_game":
+
+    if status.status == "in_game":
         print("success!")
 
 
@@ -86,7 +89,12 @@ def exit_game():
 
 while True:
     time.sleep(2)
-    play_game()
+
+    find_match()
+
+    while status.status != "in_game":
+        play_game()
+
     print("sleeping...")
     time.sleep(900)
     exit_game()
