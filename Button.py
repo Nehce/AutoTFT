@@ -10,7 +10,7 @@ class Button:
 
     def find_location(self):
         if not self.location:
-            self.location = pag.locateCenterOnScreen(f'img/{self.name}.png', confidence=0.8)
+            self.location = pag.locateCenterOnScreen(f'img/{self.name}.png', confidence=0.9)
             if self.location:
                 print(f"{self.name} has been found!")
             else:

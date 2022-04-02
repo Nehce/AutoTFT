@@ -23,15 +23,16 @@ class Status:
             print("Warning! illegal to go backward here!")
 
     def check(self):
-        flag = None
-        while not flag:
-            for item in ["find_match", "in_queue", "accept", "in_game", "exit", "play_again"]:
-                flag = pag.locateOnScreen(f"img/{item}.png")
-                if flag:
-                    self.status = item  # find corresponding counter of the found button
-                    print(f"Status checked! ----{item}----")
-                    break
-            print("No status checked. Continuing...")
+        #  please pay attention to the order of the following list, it matters!!
+        #  the first one checked will break the for loop, so items in the front of the list has higher priority.
+        for item in ["find_match", "accept", "in_queue", "exit", "play_again", "in_game"]:
+            flag = pag.locateOnScreen(f"img/{item}.png", confidence=0.9)
+            if flag:
+                self.status = item  # find corresponding counter of the found button
+                print(f"Status checked! ----{item}----")
+                break
+        if flag is None:
+            print('nothing was found!')
 
 
 if __name__ == "__main__":

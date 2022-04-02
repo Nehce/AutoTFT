@@ -70,15 +70,18 @@ def play_game():
 def exit_game():
     while True:
         status.check()
+        print(f'ready to exit... Status now:{status.status}')
         if status.status == "exit":
             quit_match()
             break
-        if status.status == "play_again":
+        elif status.status == "play_again":
             play_again()
             break
-        else:
+        elif status.status is None:
             print("game does not end yet")
-            time.sleep(100)
+            time.sleep(30)
+        else:
+            raise RuntimeError('something was wrong in the progress')
 
 
 while True:
